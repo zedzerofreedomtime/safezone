@@ -1,332 +1,173 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>Safezone Town</title>
-  <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #ffe4f0, #c0e8f9);
-      color: #ffffff;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <title>กฎกิจกรรม - แอร์ดรอปแก๊ง | Safezone Town</title>
+    <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #ffe4f0, #c0e8f9);
+            color: #333;
+            text-align: center;
+        }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #ffb6d5cc;
-      padding: 10px 30px;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-      animation: fadeInDown 1s ease;
-    }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ffb6d5cc;
+            padding: 10px 30px;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    header.hide-header {
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
 
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
 
-    .logo, nav {
-      transition: all 0.5s ease-in-out;
-    }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            background-color: #f48fb1;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
+        nav a:hover {
+            background-color: #f06292;
+        }
 
-    .logo img {
-      height: 60px;
-      margin-right: 15px;
-      animation: rotateLogo 3s infinite linear;
-    }
+        .content {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+            background-color: #ffffffcc;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
 
-    @keyframes rotateLogo {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        h1 {
+            color: #ff69b4;
+        }
 
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #ffffff;
-      font-weight: bold;
-      background-color: #f48fb1;
-      padding: 8px 15px;
-      border-radius: 20px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
+        h2 {
+            margin-top: 30px;
+            color: #d63384;
+        }
 
-    nav a:hover {
-      background-color: #f06292;
-      transform: scale(1.1);
-    }
+        p, li {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 18px;
+        }
 
-    .main-content {
-      margin-top: 100px;
-      animation: fadeIn 1.2s ease;
-    }
+        .rule-section {
+            text-align: left;
+            margin-top: 20px;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .penalty {
+            color: #e53935;
+            font-weight: bold;
+        }
 
-    .main-content img {
-      max-width: 300px;
-      animation: pulse 2s infinite;
-    }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f48fb1;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 1;
+        }
 
-    .btn {
-      margin-top: 20px;
-      background-color: #ffd1f7;
-      border: none;
-      padding: 15px 30px;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 30px;
-      color: #d63384;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
 
-    .btn:hover {
-      transform: scale(1.05);
-    }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
 
-    h1, h2 {
-      color: rgb(0, 0, 0);
-    }
+        .dropdown-content a:hover {
+            background-color: #f06292;
+        }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f48fb1;
-      min-width: 160px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      z-index: 1;
-      animation: dropdownFade 0.3s ease;
-    }
-
-    @keyframes dropdownFade {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #f06292;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-  </style>
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
-
 <body>
-    
-  <header id="site-header">
+<header>
     <div class="logo">
-      <img src="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png" alt="Logo">
-      <h2>Safezone Town</h2>
+        <img src="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png" alt="Logo">
+        <h2>Safezone Town</h2>
     </div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="basic_rules.html">กฎการเล่น</a>
-      <a href="activity_rules.html">กฎกิจกรรม</a>
+         <a href="index.html">Home</a>
+        <a href="basic_rules.html">กฎการเล่น</a>
+        <a href="activity_rules.html">กฎกิจกรรม</a>
     </nav>
-  </header>
+</header>
 
-  <div class="main-content">
-    <img src="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png" alt="Main Logo">
-    <h1>ข้อบังคับเซิร์ฟเวอร์</h1>
-    <h2>Safezone Town</h2>
-    <a href="basic_rules.html" class="btn">อ่านกฎทั้งหมด</a>
-  </div>
+<div class="content">
+    <h1>📌 หมวดหมู่ กฎการเล่น แอร์ดรอปแก๊ง (สำหรับแก๊ง)</h1>
 
-  <div style="max-width: 800px; margin: 30px auto; text-align: left; background-color: #ffffffcc; padding: 20px; border-radius: 15px; color: #333;">
-    <h2 style="color:#d63384;">คำแนะนำในการเล่น</h2>
-    <ul style="line-height: 1.8;">
-      <li>ผู้เล่นจะต้องเล่นโดยอยู่บนพื้นฐานมารยาททางสังคม</li>
-      <li>ห้ามรบกวนทางเสียงหรือสร้างความรำคาญแก่ผู้อื่น</li>
-      <li>ต้องมีอุปกรณ์สื่อสารพร้อมใช้งาน เช่น ไมค์และหูฟัง</li>
-      <li>ต้องรู้กฎทั้งหมด อ้างว่าไม่รู้ไม่ได้</li>
-      <li>ยอมรับบทลงโทษที่ทำผิดกฎ</li>
-      <li>การตัดสินของแอดมินถือเป็นที่สิ้นสุด</li>
-      <li>แจ้งใบภายใน 48 ชม. หลังจบสตอรี่</li>
-      <li>เมื่อแอดมินเรียก ต้องรายงานตัวภายใน 24 ชม.</li>
-      <li>พื้นที่สีแดงบนแผนที่เป็นเขตไร้กฎหมาย</li>
-      <li>ห้ามใส่เสื้อขาว หัวโล้น รองเท้าโต๊ะหมากรุก (ปรับ 100K)</li>
-      <li>การหนีจากสตอรี่ต้องพ้นสายตา 30 นาที ก่อนออกเกม</li>
-    </ul>
-    <h3 style="color:#d63384;">การตั้งชื่อ</h3>
-    <ul style="line-height: 1.8;">
-      <li>ใช้ชื่อตามบัตรประชาชน</li>
-      <li>ห้ามมีเครื่องหมายพิเศษ ตัวเลข หรือชื่อกลาง</li>
-      <li>ชื่อ Discord และ Steam ต้องตรงกับชื่อในเมือง</li>
-      <li>ชื่อผิด ปรับ 100K</li>
-    </ul>
-    <h3 style="color:#d63384;">การแจ้งใบและหลักฐาน</h3>
-    <ul style="line-height: 1.8;">
-      <li>เจ้าตัวต้องแจ้งเอง</li>
-      <li>รับเฉพาะหลักฐานของฝั่งตนเอง เว้นแต่เป็นกรณีร้ายแรง</li>
-    </ul>
-  </div>
+    <div class="rule-section">
+        <p>🔹 ผู้ที่มีสตอรี่ต่อเนื่องติดตัวอยู่ห้ามเข้าเล่นกิจกรรมทุกกรณี หากมีสตอรี่ติดตัวอยู่แล้วหนีเจ้าไป ถือว่า <strong>Breaking Roleplay</strong></p>
+        <p class="penalty">โทษ : ใบเหลือง</p>
 
-  <div style="text-align:center; margin-top: 40px; padding-bottom: 40px;">
-    <h3 style="color:#d63384;">ติดตามเรา</h3>
-    <a href="https://www.facebook.com/profile.php?id=61574685917639" target="_blank" style="margin: 0 10px;">
-      <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width:40px;">
-    </a>
-    <a href="https://www.tiktok.com/@sirennie" target="_blank" style="margin: 0 10px;">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" style="width:40px;">
-    </a>
-    <a href="https://discord.gg/mMPvqhmSPe" target="_blank" style="margin: 0 10px;">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" style="width:40px;">
-    </a>
-  </div>
+        <p>🔹 ห้ามนั่ง, นอน หรือใช้ Emote ในขณะที่เล่นกิจกรรม รวมถึงการเก็บ Airdrop จะต้องทำในท่ายืนเท่านั้น และห้ามกระทำใด ๆ ที่เป็นการยกเลิก Animation การเก็บ</p>
+        <p class="penalty">โทษ : ปรับ 500,000 / ครั้ง / คน / ตัดสิทธิ์การเล่นในรีนั้นๆ</p>
 
-  <script>
-    let lastScroll = 0;
-    const header = document.getElementById("site-header");
+        <p>🔹 ห้ามกระทำการเคลื่อนย้ายศพคู่กรณีหรือกักศพในกิจกรรมโดยเด็ดขาด</p>
+        <p>ข้อแนะนำ: หากทำการหยิบศพผิดจะต้องพูดว่า "ขอโทษ" ทันที</p>
+        <p class="penalty">โทษ : ปรับ 500,000 / ครั้ง / คน / ตัดสิทธิ์การเล่นในรีนั้นๆ</p>
 
-    window.addEventListener("scroll", () => {
-      const currentScroll = window.pageYOffset;
+        <p>🔹 จำนวนผู้เล่นในหนึ่งทีม:</p>
+        <ul>
+            <li>แก๊ง : <strong>สูงสุด 25 คน</strong> ต้องเล่นภายใต้นามแก๊งเท่านั้น</li>
+        </ul>
+        <p class="penalty">โทษ : ปรับ 500,000 / ครั้ง / คน / ตัดสิทธิ์การเล่นในรีนั้นๆ</p>
 
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        header.classList.add("hide-header");
-      } else {
-        header.classList.remove("hide-header");
-      }
+        <p>🔹 ต้องมีเพียงทีมเดียวที่เหลือรอด จึงจะสามารถเริ่มเก็บแอร์ดรอปได้</p>
+        <p class="penalty">โทษ : ปรับ 500,000 / ครั้ง / คน / ตัดสิทธิ์การเล่นในรีนั้นๆ</p>
 
-      lastScroll = currentScroll;
-    });
-  </script>
+        <p>🔹 ผู้เล่นจะต้องสวมใส่ <strong>ชุดแก๊ง</strong> (สำหรับแก๊ง) ในการเล่นเท่านั้น</p>
+        <p class="penalty">โทษ : ปรับ 500,000 / ครั้ง / คน / ตัดสิทธิ์การเล่นในรีนั้นๆ</p>
 
-  <audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-  เบราว์เซอร์ของคุณไม่รองรับเสียง
-</audio>
+        <p>🔹 จำกัดการเข้าร่วมแอร์ดรอปได้แก๊งละ <strong>1 ลูกต่อ 1 รอบ</strong> เท่านั้น (เลือกสีใดสีหนึ่ง)</p>
+        <ul>
+            <li>กรณี 1 : ไปเล่นแต่ไม่เก็บแอร์ดรอป</li>
+            <p class="penalty">โทษ : ปรับ 5,000,000 / ครั้ง / นามแก๊ง / ตัดสิทธิ์</p>
 
-<!-- กล่องรวมปุ่มกับสไลด์ -->
-<div id="audio-controls" style="
-  position: fixed; 
-  bottom: 20px; 
-  right: 20px; 
-  background: rgba(255, 255, 255, 0.85); 
-  border-radius: 15px; 
-  padding: 10px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 140px;
-">
-
-  <button id="mute-btn" class="btn" style="font-size: 20px; width: 100%;">🔊</button>
-
-  <button id="play-btn" class="btn" style="font-size: 20px; width: 100%;">⏸️</button>
-
-  <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" style="width: 100%;">
+            <li>กรณี 2 : ไปเล่นและเก็บแอร์ดรอป</li>
+            <p class="penalty">โทษ : ปรับ 10,000,000 / ครั้ง / นามแก๊ง / ตัดสิทธิ์</p>
+        </ul>
+    </div>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const music = document.getElementById("bg-music");
-    const muteBtn = document.getElementById("mute-btn");
-    const playBtn = document.getElementById("play-btn");
-    const volumeSlider = document.getElementById("volume-slider");
-
-    // เล่นเพลงเมื่อคลิกครั้งแรก
-    function playMusicOnce() {
-      music.play().catch(e => console.log("Autoplay failed:", e));
-      document.removeEventListener("click", playMusicOnce);
-    }
-    document.addEventListener("click", playMusicOnce);
-
-    // Mute toggle
-    muteBtn.addEventListener("click", () => {
-      music.muted = !music.muted;
-      muteBtn.textContent = music.muted ? "🔇" : "🔊";
-    });
-
-    // Play/Pause toggle
-    playBtn.addEventListener("click", () => {
-      if (music.paused) {
-        music.play();
-        playBtn.textContent = "⏸️";
-      } else {
-        music.pause();
-        playBtn.textContent = "▶️";
-      }
-    });
-
-    // ปรับเสียง
-    volumeSlider.addEventListener("input", (e) => {
-      music.volume = e.target.value;
-      if (music.volume > 0 && music.muted) {
-        music.muted = false;
-        muteBtn.textContent = "🔊";
-      }
-      if (music.volume == 0) {
-        music.muted = true;
-        muteBtn.textContent = "🔇";
-      }
-    });
-  });
-</script>
-
-</script>
-
-</script>
-
-    
-  </script>
 
 </body>
 </html>
