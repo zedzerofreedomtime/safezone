@@ -29,8 +29,7 @@
   z-index: 1000;
   animation: fadeInDown 1s ease;
    transition: transform 0.5s ease, opacity 0.5s ease;
-} 4px 8px rgba(0, 0, 0, 0.1);
-    }
+}
     nav a {
       margin: 0 10px;
       text-decoration: none;
@@ -38,7 +37,6 @@
       background: #f48fb1;
       padding: 8px 15px;
       border-radius: 20px;
-    }
     h1, h2, h3 {
       color: #d63384;
     }
@@ -361,5 +359,30 @@
 
     </div>
   </div>
+  <!-- Script: Header Auto Hide -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById("site-header");
+
+      // คำนวณความสูง header แล้วเติม padding-top ให้ body
+      const headerHeight = header.offsetHeight;
+      document.body.style.paddingTop = headerHeight + 'px';
+
+      // ตรวจจับการ scroll เพื่อซ่อน header
+      let lastScroll = 0;
+
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+          header.classList.add("hide-header");
+        } else {
+          header.classList.remove("hide-header");
+        }
+
+        lastScroll = currentScroll;
+      });
+    });
+  </script>
 </body>
 </html>
