@@ -16,14 +16,20 @@
       padding: 0 20px;
     }
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #ffb6d5cc; /* ชมพูพาสเทลโปร่งแสง */
-      padding: 10px 30px;
-      position: sticky;
-      top: 0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #ffb6d5cc;
+  padding: 10px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeInDown 1s ease;
+   transition: transform 0.5s ease, opacity 0.5s ease;
+} 4px 8px rgba(0, 0, 0, 0.1);
     }
     nav a {
       margin: 0 10px;
