@@ -15,7 +15,7 @@
       color: #333;
       padding: 0 20px;
     }
-    header {
+     header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -37,6 +37,7 @@
       background: #f48fb1;
       padding: 8px 15px;
       border-radius: 20px;
+    }
     h1, h2, h3 {
       color: #d63384;
     }
@@ -92,7 +93,7 @@
     }
     .menu-center {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 67px;
 }
 
 .menu-center .menu-link {
@@ -111,6 +112,17 @@
 .menu-center .menu-link:hover {
   background-color: #7a99d9;
 }
+header {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  /* ... อื่น ๆ ... */
+}
+
+header.hide-header {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 
   </style>
 </head>
@@ -129,7 +141,7 @@
 
   <div class="rule-section">
     <div class="menu-center">
-      <a class="menu-link" href="basic_rules.html">📖 กฎ RolePlay พื้นฐาน</a>
+      <a class="menu-link" href="basic_rules.html">📖 กฎ RolePlay พื้นาน</a>
       <a class="menu-link" href="city_rules.html">🏙️ กฎเมือง</a>
     </div>
 
@@ -359,30 +371,23 @@
 
     </div>
   </div>
-  <!-- Script: Header Auto Hide -->
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const header = document.getElementById("site-header");
+  // ซ่อน/แสดง header เวลาสกอลล์ลง-ขึ้น แบบเนียน ๆ
+  let lastScroll = 0;
+  const header = document.querySelector('header');
 
-      // คำนวณความสูง header แล้วเติม padding-top ให้ body
-      const headerHeight = header.offsetHeight;
-      document.body.style.paddingTop = headerHeight + 'px';
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if(currentScroll > lastScroll && currentScroll > 100) {
+      header.classList.add('hide-header');
+    } else {
+      header.classList.remove('hide-header');
+    }
+    lastScroll = currentScroll;
+  });
+</script>
 
-      // ตรวจจับการ scroll เพื่อซ่อน header
-      let lastScroll = 0;
 
-      window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > lastScroll && currentScroll > 100) {
-          header.classList.add("hide-header");
-        } else {
-          header.classList.remove("hide-header");
-        }
-
-        lastScroll = currentScroll;
-      });
-    });
   </script>
 </body>
 </html>
