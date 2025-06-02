@@ -5,7 +5,7 @@
     <title>กฎตำรวจ | Safezone Town</title>
     <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png">
     <style>
-       body {
+      body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* ฟ้อนต์เปลี่ยนตามโค้ดสอง */
     background-color: #111;  /* จาก #fff เป็น #111 (ดำเข้ม) */
@@ -62,8 +62,8 @@
       nav a {
     margin: 0;
     text-decoration: none;
-    color: #000;              /* จาก #fff เป็น #000 */
-    background-color: #fff;   /* จาก #000 เป็น #fff */
+    color: #000 !important; /* ลิงก์เมนูหลัก สีดำ */
+    background-color: #fff !important; /* พื้นหลังขาว */
     font-weight: bold;
     padding: 8px 15px;
     border-radius: 20px;
@@ -155,7 +155,8 @@
 
       nav .dropdown > a {
     background: #fff;  /* ปรับจากดำเป็นขาว */
-    color: #000;
+    color: #000 !important; /* ลิงก์ dropdown main สีดำ */
+    background-color: #fff !important;
     }
 
       nav .dropdown-content {
@@ -163,8 +164,16 @@
     top: 100%;
     }
 
-      nav .dropdown-content a:hover {
-    background-color: #666;
+    /* ลิงก์ใน dropdown-content ให้สีดำ */
+    nav .dropdown-content a {
+    color: #000 !important;
+    background-color: #fff !important; /* ถ้าต้องการพื้นหลังขาว */
+    }
+
+    /* เวลาชี้เมนู dropdown เปลี่ยนพื้นหลังให้สีเทาอ่อน */
+    nav .dropdown-content a:hover {
+    background-color: #ddd !important;
+    color: #000 !important;
     }
 
       .rule-section {
