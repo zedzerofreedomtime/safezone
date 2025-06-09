@@ -1,358 +1,292 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-    <meta charset="UTF-8">
-    <title>กฎตำรวจ | Safezone Town</title>
-    <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png">
-    <style>
-      body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* ฟ้อนต์เปลี่ยนตามโค้ดสอง */
-    background-color: #111;  /* จาก #fff เป็น #111 (ดำเข้ม) */
-    color: #fff;             /* จาก #000 เป็น #fff (ขาว) */
-    padding: 0 20px;         /* เพิ่มจากโค้ดสอง */
+  <meta charset="UTF-8">
+  <title>กฎตำรวจ | Safezone Town</title>
+  <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wdth,wght@62.5..100,100..900&family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="Nevbar.css">
+  <link rel="stylesheet" href="Footer.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans Thai', 'Noto Sans', sans-serif;
+      background: linear-gradient(to bottom, #ffb3d9, #7cc4e4);
+      color: #000000;
     }
 
-      header {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    background-color: #000;  /* จาก #333 เป็น #000 (ดำสนิท) */
-    padding: 10px 30px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* ปรับเป็นเงาสีขาวจาง */
-    z-index: 1000;
-    animation: fadeInDown 1s ease;
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    .rule-section {
+      margin: 30px auto;
+      max-width: 1000px;
+      background: #1a1a1a;
+      /* จาก #fff เป็น #1a1a1a */
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+      color: #fff;
     }
 
-      header.hide-header {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
     }
 
-      .logo, nav {
-    transition: all 0.5s ease-in-out;
+    th,
+    td {
+      border: 1px solid #444;
+      /* จาก #ccc เป็น #444 */
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+      color: #fff;
+      /* ตัวอักษรขาว */
     }
 
-      .logo {
-    justify-self: start;
-    display: flex;
-    align-items: center;
+    th {
+      background-color: #fff;
+      /* ตามโค้ดสอง */
+      color: #000;
     }
 
-      .logo img {
-    height: 60px;
-    margin-right: 15px;
-    filter: grayscale(100%);
+    h1,
+    h2,
+    h3 {
+      color: #fff;
     }
-
-      nav {
-    justify-self: center;
-    display: flex;
-    gap: 15px;
-    margin-top: 20px; /* << เพิ่มบรรทัดนี้ */
-    }
-
-
-      nav a {
-    margin: 0;
-    text-decoration: none;
-    color: #000 !important; /* ลิงก์เมนูหลัก สีดำ */
-    background-color: #fff !important; /* พื้นหลังขาว */
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 20px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    position: relative;
-    display: inline-block;
-    }
-
-      nav a:hover {
-    background-color: #444;
-    transform: scale(1.1);
-    }
-
-      .main-content {
-    margin-top: 100px;
-    animation: fadeIn 1.2s ease;
-    }
-
-      @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-    }
-
-      .main-content img {
-    max-width: 300px;
-    animation: pulse 2s infinite;
-    filter: grayscale(100%);
-    }
-
-      @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-    }
-
-      .btn {
-    margin-top: 20px;
-    background-color: #fff;  /* จาก #e0e0e0 เป็น #fff */
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 30px;
-    color: #000;             /* ตัวหนังสือดำ */
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    }
-
-      .btn:hover {
-    transform: scale(1.05);
-    }
-
-      .dropdown {
-    position: relative;
-    display: inline-block;
-    }
-
-      .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #222;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    z-index: 1;
-    }
-
-      .dropdown-content a {
-    color: #fff; /* ขาว อ่านง่าย */
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-      .dropdown-content a:last-child {
-    border-bottom: none;
-    }
-
-      .dropdown-content a:hover {
-    background-color: #fff;
-    color: #000;
-    }
-
-      .dropdown:hover .dropdown-content {
-    display: block;
-    }
-
-      nav .dropdown > a {
-    background: #fff;  /* ปรับจากดำเป็นขาว */
-    color: #000 !important; /* ลิงก์ dropdown main สีดำ */
-    background-color: #fff !important;
-    }
-
-      nav .dropdown-content {
-    background-color: #222;
-    top: 100%;
-    }
-
-    /* ลิงก์ใน dropdown-content ให้สีดำ */
-    nav .dropdown-content a {
-    color: #000 !important;
-    background-color: #fff !important; /* ถ้าต้องการพื้นหลังขาว */
-    }
-
-    /* เวลาชี้เมนู dropdown เปลี่ยนพื้นหลังให้สีเทาอ่อน */
-    nav .dropdown-content a:hover {
-    background-color: #ddd !important;
-    color: #000 !important;
-    }
-
-      .rule-section {
-    margin: 30px auto;
-    max-width: 1000px;
-    background: #1a1a1a;  /* จาก #fff เป็น #1a1a1a */
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
-    color: #fff;
-    }
-
-      table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 14px;
-    }
-
-      th, td {
-    border: 1px solid #444;  /* จาก #ccc เป็น #444 */
-    padding: 10px;
-    text-align: left;
-    vertical-align: top;
-    color: #fff;             /* ตัวอักษรขาว */
-    }
-
-      th {
-    background-color: #fff;  /* ตามโค้ดสอง */
-    color: #000;
-    }
-
-      h1, h2, h3 {
-    color: #fff;
-    }
-
-      .menu-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 900px;
-    margin: 50px auto 20px;
-    padding: 20px;
-    justify-items: center;
-    }
-
-      .menu-container a,
-      .bottom-center a {
-    display: inline-block;
-    padding: 18px 25px;
-    background-color: #444;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.25s ease;
-    }
-
-      .menu-container a:hover,
-      .bottom-center a:hover {
-    background-color: #000;
-    transform: translateY(-3px);
-    }
-
-      .bottom-center {
-    text-align: center;
-    margin-top: 30px;
-    }
-
-      #site-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: transform 0.3s ease;
-    }
-
-      .hide-header {
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    }
-
-    .button-link {
-  display: inline-block;
-  margin: 10px 8px;
-  padding: 12px 25px;
-  background-color: #444;    /* สีเทาเข้ม */
-  color: #fff;               /* ตัวหนังสือขาว */
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 18px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  }
-
-    .button-link:hover {
-  background-color: #000;   /* ดำสนิทเวลาชี้ */
-  transform: translateY(-3px);
-  }
-
-    .button-group {
-    margin-top: 2cm;/* 2 เซนติเมตร */
-    text-align: center; /* ถ้าต้องการให้อยู่ตรงกลาง */
-  }
-
-    </style>
+  </style>
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png" alt="Logo">
-            <h2>Safezone Town</h2>
+  <header class="site-header">
+    <div class="logo-container">
+      <img src="https://img5.pic.in.th/file/secure-sv1/logo1984b2f099af0258.png" alt="โลโก้" class="logo-img">
+    </div>
+
+    <div class="main-nav">
+      <a href="/">หน้าแรก</a>
+      <a href="basic_rules.html">กฎพื้นฐาน</a>
+      <a href="city_rules.html">กฎเมือง</a>
+      <a href="activity_rules.html">กฎกิจกรรม</a>
+
+      <!-- เมนูฝ่ายแพทย์ -->
+      <div class="nav-dropdown">
+        <a class="dropdown-toggle">กฎของฝ่ายแพทย์</a>
+        <div class="dropdown-menu">
+          <a href="rules_doctor.html">กฎระเบียบแพทย์</a>
+          <a href="duty_rules.html">กฎการปฏิบัติหน้าที่</a>
+          <a href="blacklist_rules.html">กฎการปรับ/Blacklist</a>
+          <a href="fees.html">ค่ารักษาพยาบาล</a>
         </div>
-        <nav>
-              <a href="index.html">Home</a>
-  <a href="basic_rules.html">กฎการเล่น</a>
-  <a href="activity_rules.html">กฎกิจกรรม</a>
-  <div class="dropdown">
-    <a href="#">กฎหน่วยงาน</a>
-    <div class="dropdown-content">
-      <a href="rules_doctor.html">กฎหมอ</a>
-      <a href="rules_police.html">กฎตำรวจ</a>
-        </nav>
-    </header>
+      </div>
 
-    <div class="rule-section">
-        <div class="button-group">
-            <a class="button-link" href="rules_police.html">📘 กฎพื้นฐานตำรวจ</a>
-            <a class="button-link" href="rules_duties.html">📋 การปฏิบัติงาน</a>
-            <a class="button-link" href="rules_warrants.html">📨 หมายเรียก / หมายจับ</a>
-            <a class="button-link" href="rules_discipline.html">⚖️ โทษวินัยตำรวจ</a>
-            <a class="button-link" href="rules_policefines.html">💸 ค่าปรับ</a>
+      <!-- เมนูตำรวจ -->
+      <div class="nav-dropdown">
+        <a class="dropdown-toggle">กฎของตำรวจ</a>
+        <div class="dropdown-menu">
+          <a href="rules_police.html">กฎพื้นฐานตำรวจ</a>
+          <a href="rules_duties.html">การปฏิบัติงาน</a>
+          <a href="rules_warrants.html">หมายเรียก / หมายจับ</a>
+          <a href="rules_discipline.html">โทษวินัยตำรวจ</a>
+          <a href="rules_policefines.html">ค่าปรับ</a>
+        </div>
+      </div>
     </div>
-<h2>🚫 โทษวินัยของเจ้าหน้าที่ตำรวจ</h2>
-<table>
-    <thead>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61574685917639" target="_blank" class="facebook-icon">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+
+      <a href="https://www.tiktok.com/@sirennie" target="_blank" class="tiktok-icon">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+    </div>
+  </header>
+
+  <div class="rule-section">
+    <h2>โทษวินัยของเจ้าหน้าที่ตำรวจ</h2>
+    <table>
+      <thead>
         <tr>
-            <th>ลำดับ</th>
-            <th>รายการ</th>
-            <th>ค่าปรับ (บาท)</th>
-            <th>เวลาจำคุก (นาที)</th>
-            <th>หมายเหตุ</th>
+          <th>ลำดับ</th>
+          <th>รายการ</th>
+          <th>ค่าปรับ (บาท)</th>
+          <th>เวลาจำคุก (นาที)</th>
+          <th>หมายเหตุ</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr><td>1</td><td>เล่นในเวลางาน (ยิงปืนเล่น แทงเล่นหน้าสน. ต่อยกันในชุดตำรวจ ยิงตำรวจด้วยกันเองเล่น)</td><td>50,000</td><td>-</td><td></td></tr>
-        <tr><td>2</td><td>ทำรถหน่วยงานหลุด</td><td>50,000</td><td>-</td><td></td></tr>
-        <tr><td>3</td><td>ไม่เข้าวอตอนเข้าเวร</td><td>50,000</td><td>-</td><td></td></tr>
-        <tr><td>4</td><td>ใช้รถหน่วยงานไม่ตรงตามยศ</td><td>200,000</td><td>-</td><td>ยกเว้นเจ้าของรถนั่งหรือได้รับอนุญาตจาก ผบ.ตร.</td></tr>
-        <tr><td>5</td><td>ทำเกินกว่าเหตุกับประชาชนหรือผู้ต้องหา</td><td>100,000</td><td>-</td><td>ต้องให้ค่าทำขวัญผู้เสียหายไม่เกิน 30,000 หากร้องขอ</td></tr>
-        <tr><td>6</td><td>พูดจาไม่ให้เกียรติและโพสต์ในทางไม่ดีใส่ประชาชน</td><td>100,000</td><td>-</td><td></td></tr>
-        <tr><td>7</td><td>ทะเลาะกันภายในกรมตำรวจ</td><td>300,000/คน</td><td>30</td><td>ถ้าซ้ำถือว่าโทษวินัยร้ายแรง</td></tr>
-        <tr><td>8</td><td>ไม่ปฏิบัติหน้าที่หรือขัดคำสั่งผู้บังคับบัญชา</td><td>200,000</td><td>30</td><td></td></tr>
-        <tr><td>9</td><td>ใส่ชุดหน่วยงานหรือใช้รถหน่วยงานขณะออกเวร</td><td>200,000</td><td>30</td><td></td></tr>
-        <tr><td>10</td><td>เหม่อในเวลาเวรเกิน 15 นาที</td><td>50,000</td><td>-</td><td>ต้องแจ้งผู้บังคับบัญชาก่อนเหม่อ</td></tr>
-        <tr><td>11</td><td>ละเลยหน้าที่หรือเหม่อจนสลบ</td><td>150,000</td><td>-</td><td></td></tr>
-        <tr><td>12</td><td>ประพฤติตัวไม่เหมาะสม</td><td>100,000</td><td>-</td><td></td></tr>
-        <tr><td>13</td><td>ใช้เมนูอุ้ม F9 หน่วยงานในทางที่ผิด</td><td>200,000</td><td>-</td><td></td></tr>
-        <tr><td>14</td><td>ห้ามเผยเรื่องภายในหน่วยงาน</td><td>ใบแดง</td><td>-</td><td>เข้าข่ายตำรวจดำ</td></tr>
-        <tr><td>15</td><td>ห้ามใช้เมนูตำรวจยัดหรือโยกไอเท็มให้คนอื่น</td><td>300,000</td><td>-</td><td>ถ้ายึดอาวุธผิด ให้แจ้ง ผบ.ก่อน</td></tr>
-        <tr><td>16</td><td>เผยเรื่องภายในหน่วยงานให้นอกหน่วยงานทราบ</td><td>ใบแดง</td><td>-</td><td>เข้าข่ายตำรวจดำ</td></tr>
-        <tr><td>17</td><td>ห้ามลดเวลา/ค่าปรับให้ผู้ต้องหาโดยไม่มีเหตุ</td><td>ใบแดง</td><td>-</td><td>เข้าข่ายตำรวจดำ</td></tr>
-        <tr><td>18</td><td>พาประชาชนที่ไม่ใช่หน่วยงานมาปฏิบัติหน้าที่</td><td>ใบแดง</td><td>-</td><td>เข้าข่ายตำรวจดำ</td></tr>
-        <tr><td>19</td><td>ห้ามบอก GPS หรือเคสตำรวจให้ประชาชนหรือแก๊ง</td><td>ใบแดง</td><td>-</td><td>เข้าข่ายตำรวจดำ</td></tr>
-        <tr><td>20</td><td>เอื้อประโยชน์ให้แก๊ง</td><td>ใบแดง</td><td>-</td><td>เข้าข่ายตำรวจดำ</td></tr>
-    </tbody>
-</table>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>เล่นในเวลางาน (ยิงปืนเล่น แทงเล่นหน้าสน. ต่อยกันในชุดตำรวจ ยิงตำรวจด้วยกันเองเล่น)</td>
+          <td>50,000</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>ทำรถหน่วยงานหลุด</td>
+          <td>50,000</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>ไม่เข้าวอตอนเข้าเวร</td>
+          <td>50,000</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>ใช้รถหน่วยงานไม่ตรงตามยศ</td>
+          <td>200,000</td>
+          <td>-</td>
+          <td>ยกเว้นเจ้าของรถนั่งหรือได้รับอนุญาตจาก ผบ.ตร.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>ทำเกินกว่าเหตุกับประชาชนหรือผู้ต้องหา</td>
+          <td>100,000</td>
+          <td>-</td>
+          <td>ต้องให้ค่าทำขวัญผู้เสียหายไม่เกิน 30,000 หากร้องขอ</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>พูดจาไม่ให้เกียรติและโพสต์ในทางไม่ดีใส่ประชาชน</td>
+          <td>100,000</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>ทะเลาะกันภายในกรมตำรวจ</td>
+          <td>300,000/คน</td>
+          <td>30</td>
+          <td>ถ้าซ้ำถือว่าโทษวินัยร้ายแรง</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>ไม่ปฏิบัติหน้าที่หรือขัดคำสั่งผู้บังคับบัญชา</td>
+          <td>200,000</td>
+          <td>30</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>ใส่ชุดหน่วยงานหรือใช้รถหน่วยงานขณะออกเวร</td>
+          <td>200,000</td>
+          <td>30</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>เหม่อในเวลาเวรเกิน 15 นาที</td>
+          <td>50,000</td>
+          <td>-</td>
+          <td>ต้องแจ้งผู้บังคับบัญชาก่อนเหม่อ</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>ละเลยหน้าที่หรือเหม่อจนสลบ</td>
+          <td>150,000</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>ประพฤติตัวไม่เหมาะสม</td>
+          <td>100,000</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>ใช้เมนูอุ้ม F9 หน่วยงานในทางที่ผิด</td>
+          <td>200,000</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>ห้ามเผยเรื่องภายในหน่วยงาน</td>
+          <td>ใบแดง</td>
+          <td>-</td>
+          <td>เข้าข่ายตำรวจดำ</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>ห้ามใช้เมนูตำรวจยัดหรือโยกไอเท็มให้คนอื่น</td>
+          <td>300,000</td>
+          <td>-</td>
+          <td>ถ้ายึดอาวุธผิด ให้แจ้ง ผบ.ก่อน</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>เผยเรื่องภายในหน่วยงานให้นอกหน่วยงานทราบ</td>
+          <td>ใบแดง</td>
+          <td>-</td>
+          <td>เข้าข่ายตำรวจดำ</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>ห้ามลดเวลา/ค่าปรับให้ผู้ต้องหาโดยไม่มีเหตุ</td>
+          <td>ใบแดง</td>
+          <td>-</td>
+          <td>เข้าข่ายตำรวจดำ</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td>พาประชาชนที่ไม่ใช่หน่วยงานมาปฏิบัติหน้าที่</td>
+          <td>ใบแดง</td>
+          <td>-</td>
+          <td>เข้าข่ายตำรวจดำ</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td>ห้ามบอก GPS หรือเคสตำรวจให้ประชาชนหรือแก๊ง</td>
+          <td>ใบแดง</td>
+          <td>-</td>
+          <td>เข้าข่ายตำรวจดำ</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td>เอื้อประโยชน์ให้แก๊ง</td>
+          <td>ใบแดง</td>
+          <td>-</td>
+          <td>เข้าข่ายตำรวจดำ</td>
+        </tr>
+      </tbody>
+    </table>
 
-<p><strong>หมายเหตุเพิ่มเติม:</strong></p>
-<ul>
-    <li>ถ้าทำผิดซ้ำเกิน 2 ครั้ง ค่าปรับอาจโดน X2 ไปเรื่อยๆ ตามดุลพินิจ ผบ. หรือ รองผบ.</li>
-    <li>ถ้าเจ้าหน้าที่ทำผิดวินัยลำดับ 1-12 ครบ 4 ครั้ง จะโดนสอบสวนว่าร้ายแรงหรือไม่</li>
-    <li>โทษวินัยต้องผ่านการตัดสินจากผู้บังคับบัญชาสูงสุดเท่านั้น</li>
-</ul>   
+    <p><strong>หมายเหตุเพิ่มเติม:</strong></p>
+    <ul>
+      <li>ถ้าทำผิดซ้ำเกิน 2 ครั้ง ค่าปรับอาจโดน X2 ไปเรื่อยๆ ตามดุลพินิจ ผบ. หรือ รองผบ.</li>
+      <li>ถ้าเจ้าหน้าที่ทำผิดวินัยลำดับ 1-12 ครบ 4 ครั้ง จะโดนสอบสวนว่าร้ายแรงหรือไม่</li>
+      <li>โทษวินัยต้องผ่านการตัดสินจากผู้บังคับบัญชาสูงสุดเท่านั้น</li>
+    </ul>
+  </div>
+
+  <footer class="site-footer">
+    <p>© 2023 Safezone Town. All rights reserved.</p>
+    <div class="footer-info">
+      <p>Safezone Town – เมืองแห่งความสนุกและความปลอดภัย</p>
+      <p>Discord: SafezoneTown#1234 | Email: safezonetown@gmail.com</p>
+      <p>เวลาทำการ: ทุกวัน 10:00 - 22:00 น.</p>
     </div>
-    
+  </footer>
+
 </body>
+
 </html>

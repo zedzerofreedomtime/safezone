@@ -1,0 +1,114 @@
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(to bottom, #7cc4e4 50%, #ffb3d9 100%);
+    color: #ffffff;
+    flex-wrap: wrap;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 100px;
+}
+
+.site-title {
+    font-size: 1.5rem;
+}
+
+.main-nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: #ffffff;
+    background-color: #ff66b3;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    background-image: linear-gradient(to right, #ff66b3, #ff3389);
+    padding: 10px 15px;
+    border-radius: 50px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: #ff3385;
+    background-position: right center;
+    transform: translateY(-3px);
+}
+
+.nav-dropdown {
+    position: relative;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    background-color: #ff66b3;
+    background-image: linear-gradient(to right, #ff66b3, #ff3389);
+    transition: all 0.3s ease;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.nav-dropdown:hover {
+    background-color: #ff3385;
+    background-position: right center;
+    transform: translateY(-3px);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 145%;
+    left: 0;
+    border-radius: 50px;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: flex;
+}
+
+.dropdown-menu a {
+    padding: 5px 10px;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.facebook-icon,
+.tiktok-icon {
+    background-image: linear-gradient(to right, #ff66b3, #ff3389);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
